@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberFlora - The Digital Medicinal Garden</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babylonjs/5.53.1/babylon.js"></script>
+</head>
+<body class="bg-[#FBF9F4] garden-page">
+
+<header id="navbar" class="bg-[#FBF9F4]/80 backdrop-blur-lg fixed top-0 left-0 right-0 z-50 shadow-sm">
+    <div class="container mx-auto px-6 py-3 flex justify-between items-center h-20">
+        <a href="index.html" class="text-2xl font-bold text-[#5A8B72] font-serif">CyberFlora</a>
+        <nav class="hidden md:flex items-center space-x-8">
+            <a href="index.html#home" class="nav-link text-gray-600">Home</a>
+            <a href="#garden-main" class="nav-link text-gray-800 font-semibold">The Garden</a>
+            <a href="index.html#principles" class="nav-link text-gray-600">Principles</a>
+            <a href="index.html#plants" class="nav-link text-gray-600">Plants</a>
+            <a href="index.html#wellbeing" class="nav-link text-gray-600">Well-being</a>
+            <a href="index.html#community" class="nav-link text-gray-600">Community</a>
+            <a href="about.html" class="nav-link text-gray-600">About</a>
+        </nav>
+        <div id="auth-links" class="flex items-center">
+        </div>
+        <button id="mobile-menu-button" class="md:hidden ml-4 text-gray-700">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+        </button>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden bg-[#FBF9F4] shadow-md">
+        <a href="index.html#home" class="block py-2 px-6 text-gray-600 hover:bg-gray-100">Home</a>
+        <a href="#garden-main" class="block py-2 px-6 text-gray-800 font-semibold hover:bg-gray-100">The Garden</a>
+        <a href="index.html#principles" class="block py-2 px-6 text-gray-600 hover:bg-gray-100">Principles</a>
+        <a href="index.html#plants" class="block py-2 px-6 text-gray-600 hover:bg-gray-100">Plants</a>
+        <a href="index.html#wellbeing" class="block py-2 px-6 text-gray-600 hover:bg-gray-100">Well-being</a>
+        <a href="index.html#community" class="block py-2 px-6 text-gray-600 hover:bg-gray-100">Community</a>
+        <a href="about.html" class="block py-2 px-6 text-gray-600 hover:bg-gray-100">About</a>
+    </div>
+</header>
+
+<main class="pt-20">
+    <section - Redirecting to the Digital Garden</section>
+    <script>
+        window.location.replace("https://d-garden-92743.web.app/");
+    </script>
+
+        <p>If you are not redirected automatically, follow this <a href="https://d-garden-92743.web.app/">link to the digital garden</a>.</p>
+
+    <section id="community" class="py-20 bg-white">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-4xl font-bold text-gray-800 mb-4">Join Our CyberFlora Community</h2>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto mb-8">Connect with like-minded people who are exploring the wellness of nature with Ayurvedic wisdom. Share your journey, learn from others, and grow together!</p>
+            <button id="join-community-btn" class="bg-[#D97706] text-white py-3 px-8 rounded-full text-lg font-semibold hover:bg-[#B45309] transition-transform transform hover:scale-105">Join the Community</button>
+        </div>
+    </section>
+</main>
+
+<footer class="bg-[#5A8B72] text-white">
+    <div class="container mx-auto px-6 py-8 text-center">
+        <p>&copy; 2025 CyberFlora. All Rights Reserved.</p>
+        <p class="text-sm mt-1">Rediscover Nature. Rebalance Yourself.</p>
+    </div>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navLinks = document.querySelectorAll('nav a');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        navLinks.forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href.startsWith('#')) {
+                    e.preventDefault();
+                    const targetElement = document.querySelector(href);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+                if(mobileMenu.classList.contains('hidden') === false) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+
+        window.addEventListener('load', () => {
+            if (window.location.hash) {
+                const targetElement = document.querySelector(window.location.hash);
+                if (targetElement) {
+                    setTimeout(() => {
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                    }, 0);
+                }
+            }
+        });
+
+        const canvas = document.getElementById('renderCanvas');
+        const engine = new BABYLON.Engine(canvas, true);
+        const createScene = function () {
+            const scene = new BABYLON.Scene(engine);
+            scene.clearColor = new BABYLON.Color3.FromHexString("#FBF9F4");
+            const camera = new BABYLON.ArcRotateCamera("camera", -Math.PI / 2, Math.PI / 2.5, 15, new BABYLON.Vector3(0, 2, 0), scene);
+            camera.attachControl(canvas, true);
+            camera.lowerRadiusLimit = 10;
+            camera.upperRadiusLimit = 30;
+            const light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
+            light.intensity = 0.8;
+            const ground = BABYLON.MeshBuilder.CreateGround("ground", {width: 20, height: 20}, scene);
+            const groundMaterial = new BABYLON.StandardMaterial("groundMat", scene);
+            groundMaterial.diffuseColor = new BABYLON.Color3.FromHexString("#A89C8C");
+            ground.material = groundMaterial;
+            BABYLON.SceneLoader.Append("models/", "tree_stump.glb", scene, function (meshes) {
+                // ... success callback
+            }, null, function (scene, message, exception) {
+                console.error("Error loading GLB model:", message, exception);
+                const box = BABYLON.MeshBuilder.CreateBox("fallbackBox", {size: 2}, scene);
+                box.position = new BABYLON.Vector3(0, 1, 0);
+                const material = new BABYLON.StandardMaterial("boxMat", scene);
+                material.diffuseColor = new BABYLON.Color3(1, 0, 0);
+                box.material = material;
+                console.warn("Falling back to a red box due to GLB loading error.");
+            });
+            return scene;
+        };
+        const scene = createScene();
+        engine.runRenderLoop(function () {
+            scene.render();
+        });
+        window.addEventListener('resize', function () {
+            engine.resize();
+        });
+    });
+</script>
+<script src="auth-status.js" type="module"></script>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyAmIuwUeed6cA1ZL4hWN-GY1IbNDxZtBcw",
+        authDomain: "cyberflora-cb897.firebaseapp.com",
+        projectId: "cyberflora-cb897",
+        storageBucket: "cyberflora-cb897.appspot.com",
+        messagingSenderId: "683286424975",
+        appId: "1:683286424975:web:6be1168a15792ea2b42ffa"
+    };
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    const joinBtn = document.getElementById('join-community-btn');
+    joinBtn.addEventListener('click', () => {
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                window.location.href = 'community.html';
+            } else {
+                window.location.href = 'login.html';
+            }
+        });
+    });
+</script>
+</body>
+</html>

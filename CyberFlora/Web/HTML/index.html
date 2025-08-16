@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberFlora - Discover Ayurvedic Wellness</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babylonjs/5.53.1/babylon.js"></script>
+</head>
+<body class="bg-[#FBF9F4]">
+
+<header id="navbar" class="bg-[#FBF9F4]/80 backdrop-blur-lg fixed top-0 left-0 right-0 z-50 shadow-sm">
+    <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+        <a href="#home" class="text-2xl font-bold text-[#5A8B72] font-serif">CyberFlora</a>
+        <nav class="hidden md:flex items-center space-x-8">
+            <a href="#home" class="nav-link text-gray-600">Home</a>
+            <a href="garden.html#garden-main" class="nav-link text-gray-600">The Garden</a>
+            <a href="#principles" class="nav-link text-gray-600">Principles</a>
+            <a href="#plants" class="nav-link text-gray-600">Plants</a>
+            <a href="#wellbeing" class="nav-link text-gray-600">Well-being</a>
+            <a href="#community" class="nav-link text-gray-600">Community</a>
+            <a href="#about" class="nav-link text-gray-600">About</a>
+        </nav>
+        <div class="flex items-center">
+            <a href="login.html" class="bg-[#5A8B72] text-white py-2 px-4 rounded-full hover:bg-[#4a755f] transition-colors text-sm font-semibold">Login</a>
+            <button id="mobile-menu-button" class="md:hidden ml-4 text-gray-700">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </div>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden bg-[#FBF9F4] shadow-md">
+        <a href="#home" class="block py-2 px-6 text-gray-600 hover:bg-gray-100">Home</a>
+        <a href="garden.html#garden-main" class="block py-2 px-6 text-gray-600 hover:bg-gray-100">The Garden</a>
+        <a href="#principles" class="block py-2 px-6 text-gray-600 hover:bg-gray-100">Principles</a>
+        <a href="#plants" class="block py-2 px-6 text-gray-600 hover:bg-gray-100">Plants</a>
+        <a href="#wellbeing" class="block py-2 px-6 text-gray-600 hover:bg-gray-100">Well-being</a>
+        <a href="#community" class="block py-2 px-6 text-gray-600 hover:bg-gray-100">Community</a>
+        <a href="#about" class="block py-2 px-6 text-gray-600 hover:bg-gray-100">About</a>
+    </div>
+</header>
+
+<main>
+    <section id="home" class="min-h-screen flex items-center justify-center hero-bg pt-20">
+        <div class="text-center px-6">
+            <h1 class="text-5xl md:text-7xl font-bold text-[#4A4A4A] mb-4 leading-tight">Cultivating Wellness, Naturally.</h1>
+            <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mb-8">Explore an interactive 3D garden of medicinal plants and rediscover the ancient wisdom of Indian Ayurveda, tailored for modern life.</p>
+            <a href="garden.html" class="bg-[#D97706] text-white py-3 px-8 rounded-full text-lg font-semibold hover:bg-[#B45309] transition-transform transform hover:scale-105">Explore The Garden</a>
+        </div>
+    </section>
+
+    <section id="garden-preview" class="py-20 bg-white">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-4xl font-bold text-gray-800 mb-4">A Glimpse of Our Digital Medicinal Garden</h2>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto mb-12">Step into a world of healing plants. Our interactive 3D garden allows you to navigate and learn about each plant. Click and explore to uncover the secrets of Ayurvedic botany.</p>
+            <div class="w-full h-[60vh] max-h-[500px] max-w-4xl mx-auto bg-gray-100 rounded-2xl shadow-lg overflow-hidden">
+                <iframe src="https://d-garden-92743.web.app/" frameborder="0" style="width: 100%; height: 80vh; max-height: 700px; border: none;"></iframe>
+            </div>
+            <div class="text-center mt-8">
+                <a href="https://d-garden-92743.web.app/" class="bg-[#5A8B72] text-white py-3 px-8 rounded-full text-lg font-semibold hover:bg-[#4a755f] transition-transform transform hover:scale-105">Enter Full Garden Experience</a>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="principles" class="py-20 bg-[#FBF9F4]">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">The Heart of Ayurveda</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">Ayurveda sees the world and our bodies as a blend of five core elements. Understanding these principles is the first step toward achieving balance and holistic health.</p>
+            </div>
+            <div class="grid md:grid-cols-5 gap-8 text-center">
+                <div class="p-6">
+                    <div class="text-5xl mb-4">🌍</div>
+                    <h3 class="text-2xl font-semibold mb-2">Prithvi (Earth)</h3>
+                    <p class="text-gray-600">Represents the solid state of matter, providing structure and stability.</p>
+                </div>
+                <div class="p-6">
+                    <div class="text-5xl mb-4">💧</div>
+                    <h3 class="text-2xl font-semibold mb-2">Jala (Water)</h3>
+                    <p class="text-gray-600">Symbolizes the liquid state, governing fluids and cohesion in the body.</p>
+                </div>
+                <div class="p-6">
+                    <div class="text-5xl mb-4">🔥</div>
+                    <h3 class="text-2xl font-semibold mb-2">Agni (Fire)</h3>
+                    <p class="text-gray-600">Governs transformation, from digestion to metabolism and intelligence.</p>
+                </div>
+                <div class="p-6">
+                    <div class="text-5xl mb-4">💨</div>
+                    <h3 class="text-2xl font-semibold mb-2">Vayu (Air)</h3>
+                    <p class="text-gray-600">Represents the gaseous state, responsible for all movement and pulsation.</p>
+                </div>
+                <div class="p-6">
+                    <div class="text-5xl mb-4">🌌</div>
+                    <h3 class="text-2xl font-semibold mb-2">Akasha (Ether)</h3>
+                    <p class="text-gray-600">The space in which everything exists, related to sound and emptiness.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="plants" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Plants for Modern Life</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">Discover plants that address today's wellness challenges. Filter by your needs to find your natural allies for stress, immunity, and more.</p>
+            </div>
+            <div id="plant-filters" class="flex flex-wrap justify-center gap-2 md:gap-4 mb-12">
+                <button class="filter-btn active py-2 px-5 rounded-full transition-colors bg-gray-200 text-gray-700" data-filter="all">All Plants</button>
+                <button class="filter-btn py-2 px-5 rounded-full transition-colors bg-gray-200 text-gray-700" data-filter="Stress & Sleep">Stress & Sleep</button>
+                <button class="filter-btn py-2 px-5 rounded-full transition-colors bg-gray-200 text-gray-700" data-filter="Immunity">Immunity</button>
+                <button class="filter-btn py-2 px-5 rounded-full transition-colors bg-gray-200 text-gray-700" data-filter="Gut Health">Gut Health</button>
+                <button class="filter-btn py-2 px-5 rounded-full transition-colors bg-gray-200 text-gray-700" data-filter="Skin Health">Skin Health</button>
+                <button class="filter-btn py-2 px-5 rounded-full transition-colors bg-gray-200 text-gray-700" data-filter="Cognitive Function">Cognitive Function</button>
+                <button class="filter-btn py-2 px-5 rounded-full transition-colors bg-gray-200 text-gray-700" data-filter="Detoxification">Detoxification</button>
+            </div>
+            <div id="plant-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            </div>
+            <div class="text-center mt-12">
+                <button id="show-more-plants-btn" class="bg-[#5A8B72] text-white py-3 px-8 rounded-full text-lg font-semibold hover:bg-[#4a755f] transition-transform transform hover:scale-105 hidden">Show More Plants</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="wellbeing" class="py-20 bg-[#FBF9F4]">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Live in Harmony</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">Ayurveda offers timeless wisdom for daily life. Explore routines that align your body and mind with the rhythms of nature for profound well-being.</p>
+            </div>
+            <div class="max-w-4xl mx-auto">
+                <div class="border-b border-gray-300 flex justify-center mb-8">
+                    <button class="tab-btn active text-lg py-3 px-6 border-b-2 border-transparent" data-tab="daily">Dinacharya (Daily Routine)</button>
+                    <button class="tab-btn text-lg py-3 px-6 border-b-2 border-transparent text-gray-500" data-tab="seasonal">Ritucharya (Seasonal Living)</button>
+                </div>
+                <div id="tab-content">
+                    <div id="daily-content" class="tab-pane">
+                        <div class="space-y-6 text-gray-700">
+                            <p><strong>Morning:</strong> Wake before sunrise. Cleanse (tongue scraping, oil pulling). Drink warm water. Practice gentle yoga and meditation.</p>
+                            <p><strong>Midday:</strong> Eat your largest meal when digestive fire (Agni) is strongest. Take a short walk after eating.</p>
+                            <p><strong>Evening:</strong> Enjoy a light, easy-to-digest dinner. Wind down with calming activities. Avoid screens before bed.</p>
+                            <p><strong>Sleep:</strong> Aim for sleep by 10 PM to allow the body to rest and repair effectively.</p>
+                        </div>
+                    </div>
+                    <div id="seasonal-content" class="tab-pane hidden">
+                        <div class="space-y-6 text-gray-700">
+                            <p><strong>Winter (Hemanta/Shishira):</strong> Favor warm, nourishing foods. Stay active to combat sluggishness. Protect yourself from cold and dampness.</p>
+                            <p><strong>Spring (Vasanta):</strong> Opt for lighter, bitter, and pungent foods to reduce Kapha. Increase activity and cleanse the body.</p>
+                            <p><strong>Summer (Grishma):</strong> Eat cooling, liquid-rich foods. Avoid excessive sun exposure. Stay hydrated with sweet, cooling drinks.</p>
+                            <p><strong>Autumn (Sharada/Varsha):</strong> Consume warm, moist, and grounding foods. Establish a regular routine to balance Vata. Practice self-oil massage (Abhyanga).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="community" class="py-20 bg-white">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-4xl font-bold text-gray-800 mb-4">Join Our VedaGarden Community</h2>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto mb-8">Connect with like-minded people who are exploring the wellness of nature with Ayurvedic wisdom. Share your journey, learn from others, and grow together!</p>
+            <button id="join-community-btn" class="bg-[#D97706] text-white py-3 px-8 rounded-full text-lg font-semibold hover:bg-[#B45309] transition-transform transform hover:scale-105">Join the Community</button>
+        </div>
+    </section>
+
+    <section id="about" class="py-20 bg-[#FBF9F4] pb-10">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-4xl font-bold text-gray-800 mb-4">Our Mission</h2>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto">We are passionate about bridging ancient wisdom with modern technology. VedaGarden is our commitment to making the profound, holistic knowledge of Ayurveda accessible, engaging, and relevant for a new generation. We believe in empowering individuals to connect with nature and cultivate their own well-being, authentically and sustainably.</p>
+        </div>
+    </section>
+</main>
+
+<footer class="bg-[#5A8B72] text-white">
+    <div class="container mx-auto px-6 py-8 text-center">
+        <p>&copy; 2025 VedaGarden. All Rights Reserved.</p>
+        <p class="text-sm mt-2">Rediscover Nature. Rebalance Yourself.</p>
+    </div>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const plantData = [
+            { name: 'Ashwagandha', category: ['Stress & Sleep', 'Gut Health'], icon: '🌿', benefits: 'Adaptogen, Stress Reducer, Sleep Aid', wiki: 'https://en.wikipedia.org/wiki/Withania_somnifera' },
+            { name: 'Turmeric', category: ['Immunity', 'Skin Health', 'Gut Health'], icon: '🧡', benefits: 'Antioxidant, Anti-inflammatory', wiki: 'https://en.wikipedia.org/wiki/Turmeric' },
+            { name: 'Amla (Indian Gooseberry)', category: ['Immunity', 'Gut Health', 'Skin Health'], icon: '🍈', benefits: 'High Vitamin C, Immune Booster', wiki: 'https://en.wikipedia.org/wiki/Phyllanthus_emblica' },
+            { name: 'Moringa', category: ['Immunity', 'Stress & Sleep'], icon: '🌱', benefits: 'Nutritious, Antioxidant', wiki: 'https://en.wikipedia.org/wiki/Moringa_oleifera' },
+            { name: 'Ginger', category: ['Gut Health'], icon: '🌶️', benefits: 'Digestive Stimulant, Reduces Bloating', wiki: 'https://en.wikipedia.org/wiki/Ginger' },
+            { name: 'Fennel', category: ['Gut Health'], icon: '🌿', benefits: 'Relieves Gas & Acidity', wiki: 'https://en.wikipedia.org/wiki/Fennel' },
+            { name: 'Triphala', category: ['Gut Health', 'Detoxification'], icon: '🍇', benefits: 'Supports Regular Bowel Movements', wiki: 'https://en.wikipedia.org/wiki/Triphala' },
+            { name: 'Tulsi (Holy Basil)', category: ['Immunity', 'Stress & Sleep'], icon: '🍃', benefits: 'Immune Modulator, Calming', wiki: 'https://en.wikipedia.org/wiki/Ocimum_tenuiflorum' },
+            { name: 'Brahmi', category: ['Cognitive Function', 'Stress & Sleep'], icon: '🧠', benefits: 'Memory Enhancer, Reduces Anxiety', wiki: 'https://en.wikipedia.org/wiki/Bacopa_monnieri' },
+            { name: 'Neem', category: ['Skin Health', 'Detoxification', 'Immunity'], icon: '🌳', benefits: 'Blood Purifier, Antiseptic', wiki: 'https://en.wikipedia.org/wiki/Azadirachta_indica' },
+            { name: 'Giloy (Guduchi)', category: ['Immunity', 'Detoxification'], icon: '🎗️', benefits: 'Immune Booster, Detoxifier', wiki: 'https://en.wikipedia.org/wiki/Tinospora_cordifolia' },
+            { name: 'Shatavari', category: ['Stress & Sleep', 'Gut Health'], icon: '🌸', benefits: 'Female Reproductive Health', wiki: 'https://en.wikipedia.org/wiki/Asparagus_racemosus' },
+            { name: 'Black Pepper', category: ['Gut Health', 'Immunity'], icon: '⚫', benefits: 'Digestive Aid, Bio-enhancer', wiki: 'https://en.wikipedia.org/wiki/Black_pepper' },
+            { name: 'Cumin', category: ['Gut Health'], icon: '🥣', benefits: 'Aids Digestion, Relieves Bloating', wiki: 'https://en.wikipedia.org/wiki/Cumin' },
+            { name: 'Ajwain', category: ['Gut Health'], icon: '🌿', benefits: 'Relieves Indigestion, Anti-flatulent', wiki: 'https://en.wikipedia.org/wiki/Ajwain' },
+            { name: 'Cardamom', category: ['Gut Health'], icon: '💚', benefits: 'Digestive Aid, Freshens Breath', wiki: 'https://en.wikipedia.org/wiki/Cardamom' },
+            { name: 'Cinnamon', category: ['Gut Health', 'Immunity'], icon: '🪵', benefits: 'Metabolic Support, Antioxidant', wiki: 'https://en.wikipedia.org/wiki/Cinnamon' },
+            { name: 'Gotu Kola', category: ['Cognitive Function', 'Skin Health', 'Stress & Sleep'], icon: '🍀', benefits: 'Brain Booster, Wound Healing, Calming', wiki: 'https://en.wikipedia.org/wiki/Centella_asiatica' },
+            { name: 'Aloe Vera', category: ['Skin Health', 'Gut Health'], icon: '🌵', benefits: 'Soothing, Hydrating, Digestive Aid', wiki: 'https://en.wikipedia.org/wiki/Aloe_vera' },
+            { name: 'Manjistha', category: ['Detoxification', 'Skin Health'], icon: '🩸', benefits: 'Blood Purifier, Complexion Enhancer', wiki: 'https://en.wikipedia.org/wiki/Rubia_cordifolia' },
+            { name: 'Haritaki', category: ['Gut Health', 'Detoxification'], icon: '🫒', benefits: 'Digestive Tonic, Gentle Laxative', wiki: 'https://en.wikipedia.org/wiki/Terminalia_chebula' },
+            { name: 'Bibhitaki', category: ['Gut Health', 'Detoxification'], icon: '🌰', benefits: 'Respiratory Support, Detoxifier', wiki: 'https://en.wikipedia.org/wiki/Terminalia_bellirica' },
+            { name: 'Licorice Root', category: ['Stress & Sleep', 'Gut Health'], icon: '🍠', benefits: 'Adrenal Support, Soothes Digestive Tract', wiki: 'https://en.wikipedia.org/wiki/Licorice_(plant)' },
+            { name: 'Mustard Seed', category: ['Gut Health'], icon: '🟡', benefits: 'Digestive Aid, Stimulates Appetite', wiki: 'https://en.wikipedia.org/wiki/Mustard_seed' }
+        ];
+
+        const plantGrid = document.getElementById('plant-grid');
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const tabButtons = document.querySelectorAll('.tab-btn');
+        const tabPanes = document.querySelectorAll('.tab-pane');
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const showMorePlantsBtn = document.getElementById('show-more-plants-btn');
+        const INITIAL_DISPLAY_COUNT = 6;
+        let currentFilter = 'all';
+        let allPlantsDisplayed = false;
+
+        const createPlantCard = (plant) => {
+            const cardLink = document.createElement('a');
+            cardLink.href = plant.wiki;
+            cardLink.target = '_blank'; // Opens the link in a new tab
+            cardLink.rel = 'noopener noreferrer';
+            cardLink.className = 'plant-card bg-gray-50 rounded-xl p-6 text-center shadow-sm block cursor-pointer'; // Added block and cursor-pointer
+
+            cardLink.innerHTML = `
+                <div class="text-5xl mb-4">${plant.icon}</div>
+                <h3 class="text-2xl font-semibold mb-2 text-gray-800">${plant.name}</h3>
+                <p class="text-gray-600 mb-4">${plant.benefits}</p>
+                <div class="text-sm text-[#5A8B72] font-semibold">Learn More on Wikipedia</div>
+            `;
+            return cardLink;
+        };
+
+        const renderPlants = () => {
+            plantGrid.innerHTML = '';
+            let filteredPlants = currentFilter === 'all' ? plantData : plantData.filter(p => p.category.includes(currentFilter));
+            const plantsToDisplay = allPlantsDisplayed ? filteredPlants : filteredPlants.slice(0, INITIAL_DISPLAY_COUNT);
+
+            plantsToDisplay.forEach(plant => {
+                plantGrid.appendChild(createPlantCard(plant));
+            });
+
+            if (filteredPlants.length > INITIAL_DISPLAY_COUNT && !allPlantsDisplayed) {
+                showMorePlantsBtn.classList.remove('hidden');
+            } else {
+                showMorePlantsBtn.classList.add('hidden');
+            }
+        };
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                currentFilter = button.dataset.filter;
+                allPlantsDisplayed = false; // Reset when filter changes
+                renderPlants();
+            });
+        });
+
+        showMorePlantsBtn.addEventListener('click', () => {
+            allPlantsDisplayed = true;
+            renderPlants();
+        });
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                tabPanes.forEach(pane => {
+                    if (pane.id === `${button.dataset.tab}-content`) {
+                        pane.classList.remove('hidden');
+                    } else {
+                        pane.classList.add('hidden');
+                    }
+                });
+            });
+        });
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        const canvas = document.getElementById('renderCanvas');
+        const engine = new BABYLON.Engine(canvas, true);
+
+        const createScene = function () {
+            const scene = new BABYLON.Scene(engine);
+            scene.clearColor = new BABYLON.Color3.FromHexString("#FBF9F4");
+
+            const camera = new BABYLON.ArcRotateCamera("camera", -Math.PI / 2, Math.PI / 2.5, 15, new BABYLON.Vector3(0, 2, 0), scene);
+            camera.attachControl(canvas, true);
+            camera.lowerRadiusLimit = 10;
+            camera.upperRadiusLimit = 30;
+
+            const light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
+            light.intensity = 0.8;
+
+            const ground = BABYLON.MeshBuilder.CreateGround("ground", {width: 20, height: 20}, scene);
+            const groundMaterial = new BABYLON.StandardMaterial("groundMat", scene);
+            groundMaterial.diffuseColor = new BABYLON.Color3.FromHexString("#A89C8C");
+            ground.material = groundMaterial;
+
+            const createPlant = (name, position, color) => {
+                const stem = BABYLON.MeshBuilder.CreateCylinder(name + "Stem", {height: 2, diameter: 0.1}, scene);
+                stem.position = position;
+                const stemMaterial = new BABYLON.StandardMaterial(name + "StemMat", scene);
+                stemMaterial.diffuseColor = new BABYLON.Color3(0.4, 0.6, 0.4);
+                stem.material = stemMaterial;
+
+                const leaf = BABYLON.MeshBuilder.CreateSphere(name + "Leaf", {diameter: 1.5}, scene);
+                leaf.position = new BABYLON.Vector3(position.x, position.y + 1.2, position.z);
+                const leafMaterial = new BABYLON.StandardMaterial(name + "LeafMat", scene);
+                leafMaterial.diffuseColor = color;
+                leaf.material = leafMaterial;
+
+                return BABYLON.Mesh.MergeMeshes([stem, leaf], true, false, null, false, true);
+            };
+
+            createPlant("ashwagandha", new BABYLON.Vector3(-5, 1, 5), new BABYLON.Color3.FromHexString("#5A8B72"));
+            createPlant("turmeric", new BABYLON.Vector3(5, 1, 5), new BABYLON.Color3.FromHexString("#D97706"));
+            createPlant("amla", new BABYLON.Vector3(-5, 1, -5), new BABYLON.Color3.FromHexString("#96C8A2"));
+            createPlant("tulsi", new BABYLON.Vector3(5, 1, -5), new BABYLON.Color3.FromHexString("#7A6C5D"));
+
+            return scene;
+        };
+
+        const scene = createScene();
+        engine.runRenderLoop(function () {
+            scene.render();
+        });
+        window.addEventListener('resize', function () {
+            engine.resize();
+        });
+
+        // Initial render of plants on page load
+        renderPlants();
+    });
+</script>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyAmIuwUeed6cA1ZL4hWN-GY1IbNDxZtBcw",
+        authDomain: "cyberflora-cb897.firebaseapp.com",
+        projectId: "cyberflora-cb897",
+        storageBucket: "cyberflora-cb897.appspot.com",
+        messagingSenderId: "683286424975",
+        appId: "1:683286424975:web:6be1168a15792ea2b42ffa"
+    };
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    const joinBtn = document.getElementById('join-community-btn');
+    joinBtn.addEventListener('click', () => {
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                window.location.href = 'community.html';
+            } else {
+                window.location.href = 'login.html';
+            }
+        });
+    });
+</script>
+</body>
+</html>

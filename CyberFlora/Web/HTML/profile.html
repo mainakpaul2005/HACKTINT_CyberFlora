@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CyberFlora - Your Profile</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="Style.css">
+</head>
+<body class="bg-[#FBF9F4] flex flex-col min-h-screen">
+
+<header id="navbar" class="bg-[#FBF9F4]/80 backdrop-blur-lg fixed top-0 left-0 right-0 z-50 shadow-sm w-full">
+  <div class="container mx-auto px-6 py-3 flex justify-between items-center h-20">
+    <a href="index.html" class="text-2xl font-bold text-[#5A8B72] font-serif">CyberFlora</a>
+    <nav class="hidden md:flex items-center space-x-8">
+      <a href="index.html" class="nav-link text-gray-600">Home</a>
+      <a href="garden.html" class="nav-link text-gray-600">The Garden</a>
+      <a href="about.html" class="nav-link text-gray-600">About</a>
+    </nav>
+    <div id="auth-links" class="flex items-center"></div>
+  </div>
+</header>
+
+<main class="flex-grow flex items-center justify-center py-28 px-4">
+  <div id="profile-container" class="hidden bg-white p-8 md:p-12 rounded-2xl shadow-xl w-full max-w-2xl text-center">
+    <h2 id="welcome-message" class="text-3xl font-bold text-gray-800 mb-2 font-serif">Your Profile</h2>
+    <p class="text-gray-600 mb-8">Welcome to your personal wellness space.</p>
+
+    <div class="text-left space-y-4">
+      <div>
+        <div class="flex justify-between items-center">
+          <label class="text-sm font-semibold text-gray-500">Username</label>
+          <button id="edit-username-btn" class="text-sm text-[#5A8B72] hover:underline">Edit</button>
+        </div>
+        <p id="user-username" class="text-lg text-gray-800 p-3 bg-gray-100 rounded-lg"></p>
+        <div id="edit-username-form" class="hidden mt-2">
+          <input type="text" id="new-username-input" class="w-full px-4 py-3 rounded-lg border border-gray-300">
+          <p id="edit-feedback" class="text-xs text-left mt-1"></p>
+          <div class="flex gap-2 mt-2">
+            <button id="save-username-btn" class="flex-1 bg-[#5A8B72] text-white py-2 px-4 rounded-lg">Save</button>
+            <button id="cancel-edit-btn" class="flex-1 bg-gray-300 text-gray-700 py-2 px-4 rounded-lg">Cancel</button>
+          </div>
+        </div>
+      </div>
+      <div>
+        <label class="text-sm font-semibold text-gray-500">Email Address</label>
+        <p id="user-email" class="text-lg text-gray-800 p-3 bg-gray-100 rounded-lg"></p>
+      </div>
+    </div>
+    <button id="logout-button" class="mt-8 w-full bg-[#D97706] text-white py-3 rounded-full text-lg font-semibold hover:bg-[#B45309]">Logout</button>
+  </div>
+  <div id="loading-state" class="text-center">
+    <p class="text-lg text-gray-600">Loading your profile...</p>
+  </div>
+</main>
+
+<footer class="bg-[#5A8B72] text-white"><div class="container mx-auto px-6 py-4 text-center"><p>&copy; 2025 CyberFlora. All Rights Reserved.</p></div></footer>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+  import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
+  import { getFirestore, doc, getDoc, updateDoc, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyAmIuwUeed6cA1ZL4hWN-GY1IbNDxZtBcw",
+    authDomain: "cyberflora-cb897.firebaseapp.com",
+    projectId: "cyberflora-cb897",
+    storageBucket: "cyberflora-cb897.appspot.com",
+    messagingSenderId: "683286424975",
+    appId: "1:683286424975:web:6be1168a15792ea2b42ffa"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+
+  const profileContainer = document.getElementById('profile-container');
+  const loadingState = document.getElementById('loading-state');
+  const welcomeMessage = document.getElementById('welcome-message');
+  const userUsername = document.getElementById('user-username');
+  const userEmail = document.getElementById('user-email');
+  const logoutButton = document.getElementById('logout-button');
+
+  const editUsernameBtn = document.getElementById('edit-username-btn');
+  const editUsernameForm = document.getElementById('edit-username-form');
+  const newUsernameInput = document.getElementById('new-username-input');
+  const saveUsernameBtn = document.getElementById('save-username-btn');
+  const cancelEditBtn = document.getElementById('cancel-edit-btn');
+  const editFeedback = document.getElementById('edit-feedback');
+
+  let currentUser;
+
+  onAuthStateChanged(auth, async (user) => {
+    if (user) {
+      currentUser = user;
+      const userDocRef = doc(db, "users", user.uid);
+      const userDocSnap = await getDoc(userDocRef);
+
+      if (userDocSnap.exists()) {
+        const userData = userDocSnap.data();
+        welcomeMessage.textContent = `Welcome, ${userData.firstName}!`;
+        userUsername.textContent = userData.username;
+        userEmail.textContent = userData.email;
+      }
+
+      loadingState.classList.add('hidden');
+      profileContainer.classList.remove('hidden');
+    } else {
+      window.location.href = 'login.html';
+    }
+  });
+
+  editUsernameBtn.addEventListener('click', () => {
+    editUsernameForm.classList.remove('hidden');
+    newUsernameInput.value = userUsername.textContent;
+    editFeedback.textContent = '';
+  });
+
+  cancelEditBtn.addEventListener('click', () => {
+    editUsernameForm.classList.add('hidden');
+  });
+
+  saveUsernameBtn.addEventListener('click', async () => {
+    const newUsername = newUsernameInput.value.trim().toLowerCase();
+    if (newUsername === userUsername.textContent) {
+      editUsernameForm.classList.add('hidden');
+      return;
+    }
+
+    if (newUsername.length < 3) {
+      editFeedback.textContent = 'Username must be at least 3 characters.';
+      editFeedback.style.color = 'red';
+      return;
+    }
+
+    const usersRef = collection(db, "users");
+    const q = query(usersRef, where("username", "==", newUsername));
+    const querySnapshot = await getDocs(q);
+
+    if (!querySnapshot.empty) {
+      editFeedback.textContent = 'Username is already taken.';
+      editFeedback.style.color = 'red';
+      return;
+    }
+
+    try {
+      const userDocRef = doc(db, "users", currentUser.uid);
+      await updateDoc(userDocRef, { username: newUsername });
+      userUsername.textContent = newUsername;
+      editUsernameForm.classList.add('hidden');
+      alert("Username updated successfully!");
+    } catch (error) {
+      console.error("Error updating username:", error);
+      alert(`Failed to update username. The following error occurred: ${error.code}`);
+    }
+  });
+
+  logoutButton.addEventListener('click', () => {
+    signOut(auth).then(() => {
+      window.location.href = 'index.html';
+    });
+  });
+</script>
+<script src="auth-status.js" type="module"></script>
+</body>
+</html>

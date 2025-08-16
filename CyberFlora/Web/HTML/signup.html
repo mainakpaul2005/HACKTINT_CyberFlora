@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CyberFlora - Sign Up</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="Style.css">
+</head>
+<body class="bg-[#FBF9F4] flex flex-col min-h-screen">
+
+<header id="navbar" class="bg-[#FBF9F4]/80 backdrop-blur-lg fixed top-0 left-0 right-0 z-50 shadow-sm w-full">
+  <div class="container mx-auto px-6 py-3 flex justify-between items-center h-20">
+    <a href="index.html" class="text-2xl font-bold text-[#5A8B72] font-serif">CyberFlora</a>
+    <nav class="hidden md:flex items-center space-x-8">
+      <a href="index.html#home" class="nav-link text-gray-600">Home</a>
+      <a href="garden.html" class="nav-link text-gray-600">The Garden</a>
+      <a href="about.html" class="nav-link text-gray-600">About</a>
+    </nav>
+    <div id="auth-links" class="flex items-center"></div>
+  </div>
+</header>
+
+<main class="flex-grow flex items-center justify-center py-28 px-4">
+  <div class="login-container bg-white p-8 rounded-2xl shadow-xl w-full max-w-xl text-center">
+    <h2 class="text-3xl font-bold text-gray-800 mb-6 font-serif">Create Your Account</h2>
+    <form id="signup-form" class="space-y-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label for="firstName" class="block text-left text-gray-700 text-sm font-semibold mb-2">First Name</label>
+          <input type="text" id="firstName" name="firstName" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#5A8B72]" placeholder="Jane" required>
+        </div>
+        <div>
+          <label for="lastName" class="block text-left text-gray-700 text-sm font-semibold mb-2">Last Name</label>
+          <input type="text" id="lastName" name="lastName" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#5A8B72]" placeholder="Doe" required>
+        </div>
+      </div>
+      <div>
+        <label for="username" class="block text-left text-gray-700 text-sm font-semibold mb-2">Username</label>
+        <input type="text" id="username" name="username" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#5A8B72]" placeholder="janedoe123" required>
+        <p id="username-feedback" class="text-xs text-left mt-1"></p>
+      </div>
+      <div>
+        <label for="email" class="block text-left text-gray-700 text-sm font-semibold mb-2">Email Address</label>
+        <input type="email" id="email" name="email" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#5A8B72]" placeholder="your@example.com" required>
+      </div>
+      <div>
+        <label for="password" class="block text-left text-gray-700 text-sm font-semibold mb-2">Password</label>
+        <input type="password" id="password" name="password" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#5A8B72]" placeholder="•••••••• (Min. 6 characters)" required>
+      </div>
+      <button type="submit" id="submit-button" class="w-full bg-[#5A8B72] text-white py-3 rounded-full text-lg font-semibold hover:bg-[#4a755f] transition-all transform hover:scale-105 shadow-md mt-6">Create Account</button>
+      <p class="text-gray-600 text-sm mt-4">Already have an account? <a href="login.html" class="text-[#D97706] hover:underline font-semibold">Login</a></p>
+    </form>
+  </div>
+</main>
+
+<footer class="bg-[#5A8B72] text-white"><div class="container mx-auto px-6 py-4 text-center"><p>&copy; 2025 CyberFlora. All Rights Reserved.</p></div></footer>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+  import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
+  import { getFirestore, doc, setDoc, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyAmIuwUeed6cA1ZL4hWN-GY1IbNDxZtBcw",
+    authDomain: "cyberflora-cb897.firebaseapp.com",
+    projectId: "cyberflora-cb897",
+    storageBucket: "cyberflora-cb897.appspot.com",
+    messagingSenderId: "683286424975",
+    appId: "1:683286424975:web:6be1168a15792ea2b42ffa"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+
+  const signupForm = document.getElementById('signup-form');
+  const usernameInput = document.getElementById('username');
+  const usernameFeedback = document.getElementById('username-feedback');
+  const submitButton = document.getElementById('submit-button');
+  let isUsernameAvailable = false;
+
+  // Debounce function to limit how often the check runs
+  function debounce(func, delay) {
+    let timeout;
+    return function(...args) {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => func.apply(this, args), delay);
+    };
+  }
+
+  // Function to check if username is unique
+  const checkUsername = async () => {
+    const username = usernameInput.value.trim().toLowerCase();
+    if (username.length < 3) {
+      usernameFeedback.textContent = 'Username must be at least 3 characters.';
+      usernameFeedback.style.color = 'red';
+      isUsernameAvailable = false;
+      return;
+    }
+
+    const usersRef = collection(db, "users");
+    const q = query(usersRef, where("username", "==", username));
+    const querySnapshot = await getDocs(q);
+
+    if (querySnapshot.empty) {
+      usernameFeedback.textContent = 'Username is available!';
+      usernameFeedback.style.color = 'green';
+      isUsernameAvailable = true;
+      submitButton.disabled = false;
+    } else {
+      usernameFeedback.textContent = 'Username is already taken.';
+      usernameFeedback.style.color = 'red';
+      isUsernameAvailable = false;
+      submitButton.disabled = true;
+    }
+  };
+
+  usernameInput.addEventListener('input', debounce(checkUsername, 500));
+
+  signupForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!isUsernameAvailable) {
+      alert("Please choose an available username.");
+      return;
+    }
+
+    const firstName = signupForm.firstName.value;
+    const lastName = signupForm.lastName.value;
+    const username = signupForm.username.value.trim().toLowerCase();
+    const email = signupForm.email.value;
+    const password = signupForm.password.value;
+
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+
+      await setDoc(doc(db, "users", user.uid), {
+        firstName,
+        lastName,
+        email,
+        username,
+        createdAt: new Date()
+      });
+
+      alert('Account created successfully!');
+      window.location.href = 'profile.html';
+
+    } catch (error) {
+      console.error('Signup Error:', error);
+      alert(`Error: ${error.message}`);
+    }
+  });
+</script>
+<script src="auth-status.js" type="module"></script>
+</body>
+</html>

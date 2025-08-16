@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberFlora - About Us</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Style.css">
+</head>
+<body class="bg-[#FBF9F4] flex flex-col min-h-screen">
+
+<header id="navbar" class="bg-[#FBF9F4]/80 backdrop-blur-lg fixed top-0 left-0 right-0 z-50 shadow-sm w-full">
+    <div class="container mx-auto px-6 py-3 flex justify-between items-center h-20">
+        <a href="index.html" class="text-2xl font-bold text-[#5A8B72] font-serif">CyberFlora</a>
+        <nav class="hidden md:flex items-center space-x-8">
+            <a href="index.html#home" class="nav-link text-gray-600">Home</a>
+            <a href="garden.html" class="nav-link text-gray-600">The Garden</a>
+            <a href="about.html" class="nav-link text-gray-800 font-semibold">About</a>
+        </nav>
+        <div id="auth-links" class="flex items-center">
+        </div>
+        <button id="mobile-menu-button" class="md:hidden ml-4 text-gray-700">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+        </button>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden bg-[#FBF9F4] shadow-md">
+        <a href="index.html#home" class="block py-2 px-6 text-gray-600 hover:bg-gray-100">Home</a>
+        <a href="garden.html" class="block py-2 px-6 text-gray-600 hover:bg-gray-100">The Garden</a>
+        <a href="about.html" class="block py-2 px-6 text-gray-800 font-semibold hover:bg-gray-100">About</a>
+    </div>
+</header>
+
+<main class="flex-grow pt-20">
+    <section id="mission" class="py-20 bg-white">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-4xl font-bold text-gray-800 mb-4">Our Mission</h2>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto">We are passionate about bridging ancient wisdom with modern technology. CyberFlora is our commitment to making the profound, holistic knowledge of Ayurveda accessible, engaging, and relevant for a new generation. We believe in empowering individuals to connect with nature and cultivate their own well-being, authentically and sustainably.</p>
+        </div>
+    </section>
+
+    <section id="team" class="py-20 bg-[#FBF9F4]">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-4xl font-bold text-gray-800 mb-12">Meet Our Team</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-10 max-w-2xl mx-auto">
+                <div class="text-center">
+                    <img src="Images/Mainak.jpg" alt="Team Member Photo" class="w-40 h-40 rounded-full mx-auto mb-4 shadow-lg object-cover">
+                    <h3 class="text-xl font-semibold text-gray-800">Mainak Paul</h3>
+                    <p class="text-gray-600">Founder, Lead Dev, Backend</p>
+                </div>
+                <div class="text-center">
+                    <img src="Images/Aditi.jpg" alt="Team Member Photo" class="w-40 h-40 rounded-full mx-auto mb-4 shadow-lg object-cover">
+                    <h3 class="text-xl font-semibold text-gray-800">Aditi Mondal</h3>
+                    <p class="text-gray-600">Innovator, Co-Founder</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="bg-[#5A8B72] text-white">
+    <div class="container mx-auto px-6 py-4 text-center">
+        <p>&copy; 2025 CyberFlora. All Rights Reserved.</p>
+        <p class="text-sm mt-1">Rediscover Nature. Rebalance Yourself.</p>
+    </div>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    });
+</script>
+<script src="auth-status.js" type="module"></script>
+</body>
+</html>

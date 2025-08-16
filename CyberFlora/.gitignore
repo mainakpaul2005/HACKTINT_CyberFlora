@@ -1,0 +1,20 @@
+# Dependencies
+/node_modules
+/functions/node_modules
+
+# Firebase
+.firebase/
+firebase-debug.log
+database-debug.log
+
+# General
+.DS_Store
+*.log
+
+# Ignore Microsoft Office temporary files
+~$*
+
+# Ignore presentation and document files
+*.pptx
+*.pdf
+*.docx
