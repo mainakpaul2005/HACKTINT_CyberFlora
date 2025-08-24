@@ -1,0 +1,2 @@
+CyberFlora
+CyberFlora is an immersive 3D garden showcasing medicinal and ayurvedic plants, designed to reconnect Gen X and Gen Z with nature’s healing wisdom. Explore lifelike plants, learn their uses and benefits, and discover how ancient Ayurvedic knowledge blends with modern science for health, wellness, and sustainability.
